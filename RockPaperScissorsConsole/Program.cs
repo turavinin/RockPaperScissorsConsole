@@ -10,6 +10,10 @@ namespace RockPaperScissorsConsole
     {
         static void Main(string[] args)
         {
+
+
+
+            Console.ReadLine();
         }
     }
 }
