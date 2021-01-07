@@ -8,5 +8,8 @@ namespace RockPaperScissorsLibrary
 {
     public class PlayerInfoModel
     {
+        public string PlayerName { get; set; }
+        public string PlayerSelection { get; set; }
+
     }
 }

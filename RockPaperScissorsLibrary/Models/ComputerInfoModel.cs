@@ -8,5 +8,8 @@ namespace RockPaperScissorsLibrary
 {
     public class ComputerInfoModel
     {
+        public string ComputerName { get; set; }
+        public int ComputerSelection { get; set; }
+
     }
 }
