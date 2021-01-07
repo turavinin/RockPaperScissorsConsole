@@ -11,6 +11,8 @@ namespace RockPaperScissorsConsole
     {
         static void Main(string[] args)
         {
+            Console.WriteLine(ComputerRandomSelection());
+
             IntroMessage();
 
             PlayerInfoModel player = AskPlayerName();
@@ -28,21 +30,21 @@ namespace RockPaperScissorsConsole
             PlayerInfoModel output = new PlayerInfoModel();
             
             Console.Write("What is your name, hero: ");
-            string checkName = Console.ReadLine();
+            string nameToCheck = Console.ReadLine();
 
-            while (checkName.Length > 10)
+            while (nameToCheck.Length > 10)
             {
                 Console.Write("Your chosen name is very long. Try a shorter one: ");
-                checkName = Console.ReadLine();
+                nameToCheck = Console.ReadLine();
             }
 
-            if (checkName == "")
+            if (nameToCheck == "")
             {
                 output.PlayerName = "Unnamed hero";
             } 
             else
             {
-                output.PlayerName = checkName;
+                output.PlayerName = nameToCheck;
             }
             return output;
         }
