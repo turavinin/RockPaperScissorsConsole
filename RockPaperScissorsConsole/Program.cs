@@ -20,12 +20,22 @@ namespace RockPaperScissorsConsole
 
             RulesMessage(player);
 
-            player.PlayerSelection = AskPlayerSelection();
-            computer.ComputerSelection = GameLogic.ComputerSelection();
+            int playerScore;
+            int computerScore;
 
-            // LA RONDA SE JUEGA ACA O EN GAME LOGIC
+            do
+            {
+                playerScore = 0;
+                computerScore = 0;
 
-            PrintSelections(player, computer);
+                player.PlayerSelection = AskPlayerSelection();
+                computer.ComputerSelection= GameLogic.RandomComputerSelection(computer);
+
+                PrintSelections(player, computer);
+
+                GameLogic.PlayRound(player, computer, ref playerScore, ref computerScore);
+
+            } while (playerScore == 3 || computerScore == 3);
 
 
             Console.ReadLine();
@@ -35,11 +45,6 @@ namespace RockPaperScissorsConsole
         {
             Console.WriteLine(player.PlayerSelection);
             Console.WriteLine(computer.ComputerSelection);
-        }
-
-        private static void PrintSelections()
-        {
-            Console.WriteLine();
         }
 
         private static string AskPlayerSelection()
