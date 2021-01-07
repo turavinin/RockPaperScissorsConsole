@@ -16,24 +16,36 @@ namespace RockPaperScissorsLibrary
         };
 
 
-        public static string ComputerSelection()
+        public static string RandomComputerSelection()
         {
             Random randomNumber = new Random();
-            string choise = choises[randomNumber.Next(1, 3)];
+            string output = choises[randomNumber.Next(1, 3)];
 
-            
-
-            return choise;
+            return output;
         }
 
-        public static void PlayRound(PlayerInfoModel player, ComputerInfoModel computer, ref int playerScore, ref int computerScore)
+        public static void PlayRound(PlayerInfoModel player, ComputerInfoModel computer, ref int playerScore, ref int computerScore, ref int round, ref string roundWinner)
         {
+            if (player.PlayerSelection == computer.ComputerSelection)
+            {
+                return;
+            }
+            else if (player.PlayerSelection == "rock" && computer.ComputerSelection == "scissors" ||
+                player.PlayerSelection == "paper" && computer.ComputerSelection == "rock" ||
+                player.PlayerSelection == "scissors" && computer.ComputerSelection == "paper")
+            {
+                playerScore++;
+                roundWinner = player.PlayerName;
+            }
+            else
+            {
+                computerScore++;
+                roundWinner = computer.ComputerName;
+            }
+
+            round++;
             
         }
 
-        public static string RandomComputerSelection(ComputerInfoModel computer)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

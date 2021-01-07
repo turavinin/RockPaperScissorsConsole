@@ -9,7 +9,7 @@ namespace RockPaperScissorsLibrary
     public class ComputerInfoModel
     {
         public string ComputerName { get; set; } = "Alien";
-        public string ComputerSelection { get; set; } = GameLogic.ComputerSelection();
+        public string ComputerSelection { get; set; }
 
     }
 }

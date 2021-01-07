@@ -20,31 +20,54 @@ namespace RockPaperScissorsConsole
 
             RulesMessage(player);
 
-            int playerScore;
-            int computerScore;
+            int playerScore = 0;
+            int computerScore = 0;
+            int round = 1;
 
             do
             {
-                playerScore = 0;
-                computerScore = 0;
+                Console.WriteLine($"Round {round}");
+                string roundWinner = "It's a tie!";
 
                 player.PlayerSelection = AskPlayerSelection();
-                computer.ComputerSelection= GameLogic.RandomComputerSelection(computer);
-
+                computer.ComputerSelection= GameLogic.RandomComputerSelection();
+                Console.WriteLine();
                 PrintSelections(player, computer);
+                Console.WriteLine();
 
-                GameLogic.PlayRound(player, computer, ref playerScore, ref computerScore);
+                GameLogic.PlayRound(player, computer, ref playerScore, ref computerScore, ref round, ref roundWinner);
 
-            } while (playerScore == 3 || computerScore == 3);
+                PrintRoundWinner(roundWinner);
+                Console.WriteLine();
+                PrintScore(player, computer, playerScore, computerScore);
+                Console.WriteLine();
+                Console.WriteLine();
+                Console.Write("Press ENTER to start the second round.");
+                Console.ReadLine();
+                Console.Clear();
+
+
+            } while (playerScore < 3 || computerScore < 3);
 
 
             Console.ReadLine();
         }
 
+        private static void PrintRoundWinner(string roundWinner)
+        {
+            Console.WriteLine($"The winner of the round is: {roundWinner}");
+        }
+
+        private static void PrintScore(PlayerInfoModel player, ComputerInfoModel computer, int playerScore, int computerScore)
+        {
+            Console.WriteLine("The score is:");
+            Console.Write($"{player.PlayerName}: {playerScore} || {computer.ComputerName}: {computerScore}");
+        }
+
         private static void PrintSelections(PlayerInfoModel player, ComputerInfoModel computer)
         {
-            Console.WriteLine(player.PlayerSelection);
-            Console.WriteLine(computer.ComputerSelection);
+            Console.WriteLine($"{player.PlayerName} weapon is: {player.PlayerSelection}");
+            Console.WriteLine($"{computer.ComputerName} weapon is: {computer.ComputerSelection}");
         }
 
         private static string AskPlayerSelection()
