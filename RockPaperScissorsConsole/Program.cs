@@ -13,6 +13,7 @@ namespace RockPaperScissorsConsole
         {
             IntroMessage();
 
+            ComputerInfoModel computer = new ComputerInfoModel();
             PlayerInfoModel player = CreatePlayer();
 
             Console.Clear();
@@ -20,9 +21,25 @@ namespace RockPaperScissorsConsole
             RulesMessage(player);
 
             player.PlayerSelection = AskPlayerSelection();
+            computer.ComputerSelection = GameLogic.ComputerSelection();
+
+            // LA RONDA SE JUEGA ACA O EN GAME LOGIC
+
+            PrintSelections(player, computer);
 
 
             Console.ReadLine();
+        }
+
+        private static void PrintSelections(PlayerInfoModel player, ComputerInfoModel computer)
+        {
+            Console.WriteLine(player.PlayerSelection);
+            Console.WriteLine(computer.ComputerSelection);
+        }
+
+        private static void PrintSelections()
+        {
+            Console.WriteLine();
         }
 
         private static string AskPlayerSelection()
