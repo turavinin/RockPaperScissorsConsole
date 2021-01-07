@@ -11,48 +11,76 @@ namespace RockPaperScissorsConsole
     {
         static void Main(string[] args)
         {
-            Console.WriteLine(ComputerRandomSelection());
-
             IntroMessage();
 
-            PlayerInfoModel player = AskPlayerName();
+            PlayerInfoModel player = CreatePlayer();
 
             Console.Clear();
 
             RulesMessage(player);
 
+            player.PlayerSelection = AskPlayerSelection();
+
 
             Console.ReadLine();
         }
 
-        private static PlayerInfoModel AskPlayerName()
+        private static string AskPlayerSelection()
+        {
+            Console.Write("Chose your weapon (Rock / Paper / Scissors): ");
+            string output;
+
+            bool isValidSelection = false;
+            do
+            {
+                output = Console.ReadLine(); 
+
+                if (output.ToLower() == "rock" || output.ToLower() == "paper" || output.ToLower() == "scissors")
+                {
+                    isValidSelection = true;
+                }
+                else
+                {
+                    Console.Write("Invalid choise. Please check the grammar and try again: ");
+                }
+
+            } while (isValidSelection == false);
+
+            return output;
+        }
+
+        private static PlayerInfoModel CreatePlayer()
         {
             PlayerInfoModel output = new PlayerInfoModel();
-            
-            Console.Write("What is your name, hero: ");
-            string nameToCheck = Console.ReadLine();
 
-            while (nameToCheck.Length > 10)
+            output.PlayerName = AskPlayerName();
+            
+            return output;
+        }
+
+        private static string AskPlayerName()
+        {
+            Console.Write("What is your name, hero: ");
+            string output = Console.ReadLine();
+
+            while (output.Length > 10)
             {
                 Console.Write("Your chosen name is very long. Try a shorter one: ");
-                nameToCheck = Console.ReadLine();
+                output = Console.ReadLine();
             }
 
-            if (nameToCheck == "")
+            if (output == "")
             {
-                output.PlayerName = "Unnamed hero";
-            } 
-            else
-            {
-                output.PlayerName = nameToCheck;
+                output = "Unnamed hero";
             }
+
             return output;
         }
 
         private static void RulesMessage(PlayerInfoModel model)
         {
             Console.WriteLine();
-            Console.WriteLine($"{model.PlayerName}, the first to win three rounds wins the game");
+            Console.WriteLine($"{model.PlayerName}, the first to win three rounds wins the game.");
             Console.WriteLine();
         }
 

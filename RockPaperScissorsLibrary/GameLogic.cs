@@ -8,26 +8,6 @@ namespace RockPaperScissorsLibrary
 {
     public static class GameLogic
     {
-
-        
-
-        public static void Choises()
-        {
-            string[] choises = new string[]
-            {
-                "rock",
-                "paper",
-                "scissors"
-            };
-        }
-
-        public static int ComputerRandomSelection()
-        {
-            Random randomNumber = new Random();
-            int output = randomNumber.Next(1, 3);
-
-            return output;
-        }
         
     }
 }
