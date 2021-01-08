@@ -21,9 +21,5 @@ namespace RockPaperScissorsConsole
             } while (play == true);
         }
 
-
-
-
-
     }
 }
