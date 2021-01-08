@@ -32,6 +32,7 @@ namespace RockPaperScissorsConsole
                 player.PlayerSelection = AskPlayerSelection();
                 computer.ComputerSelection= GameLogic.RandomComputerSelection();
                 Console.WriteLine();
+
                 PrintSelections(player, computer);
                 Console.WriteLine();
 
@@ -39,18 +40,63 @@ namespace RockPaperScissorsConsole
 
                 PrintRoundWinner(roundWinner);
                 Console.WriteLine();
+
                 PrintScore(player, computer, playerScore, computerScore);
                 Console.WriteLine();
                 Console.WriteLine();
-                Console.Write("Press ENTER to start the second round.");
+
+                Console.Write("Press ANY BUTTON to start the second round.");
                 Console.ReadLine();
                 Console.Clear();
 
 
-            } while (playerScore < 3 || computerScore < 3);
+            } while (playerScore < 3 && computerScore < 3);
 
+            Console.Clear();
+
+            AnnounceTheWinner(playerScore, computerScore);
+            Console.WriteLine();
+            Console.WriteLine();
+
+            AskToRestartTheGame(); // FALTA EL RESTART
 
             Console.ReadLine();
+        }
+
+        private static void AskToRestartTheGame()
+        {
+            Console.Write("Do you want to play again? (y / n): ");
+            string answer;
+
+            bool isValidAnswer = false;
+            do
+            {
+                answer = Console.ReadLine();
+
+                if (answer.ToLower() == "y")
+                {
+                }
+                else
+                {
+                    Console.Write("Invalid choise. Please check the grammar and try again: ");
+                }
+
+            } while (isValidSelection == false);
+
+        }
+
+        private static void AnnounceTheWinner(int playerScore, int computerScore)
+        {
+            if (playerScore == 3)
+            {
+                Console.WriteLine("You saved our planet hero. Here are your Bitcoins!");
+            } 
+            else
+            {
+                Console.WriteLine("The aliens win.");
+                Console.WriteLine();
+                Console.WriteLine("Alien: \"Haha humans... always so miserable\"");
+            }
         }
 
         private static void PrintRoundWinner(string roundWinner)
