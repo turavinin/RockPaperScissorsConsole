@@ -11,6 +11,49 @@ namespace RockPaperScissorsConsole
     {
         static void Main(string[] args)
         {
+            bool play = true;
+
+            do
+            {
+                PlayGame();
+                play = AskToRestartTheGame();
+
+            } while (play == true);
+        }
+
+        private static bool AskToRestartTheGame()
+        {
+            Console.Write("Do you want to play again? ( y / n ): ");
+            bool output = false;
+            string answer;
+
+            bool answerIsValid = false;
+            do
+            {
+                answer = Console.ReadLine();
+                if (answer.ToLower() != "y" && answer.ToLower() != "n")
+                {
+                    Console.Write("Invalid answer. Please write 'y' or 'n': ");
+                }
+                else if (answer.ToLower() == "y")
+                {
+                    output = true;
+                    answerIsValid = true; 
+                }
+                else
+                {
+                    answerIsValid = true; 
+                }
+
+            } while (answerIsValid == false);
+
+            return output; 
+        }
+
+        private static void PlayGame()
+        {
+            Console.Clear();
+
             IntroMessage();
 
             ComputerInfoModel computer = new ComputerInfoModel();
@@ -30,7 +73,7 @@ namespace RockPaperScissorsConsole
                 string roundWinner = "It's a tie!";
 
                 player.PlayerSelection = AskPlayerSelection();
-                computer.ComputerSelection= GameLogic.RandomComputerSelection();
+                computer.ComputerSelection = GameLogic.RandomComputerSelection();
                 Console.WriteLine();
 
                 PrintSelections(player, computer);
@@ -57,31 +100,6 @@ namespace RockPaperScissorsConsole
             AnnounceTheWinner(playerScore, computerScore);
             Console.WriteLine();
             Console.WriteLine();
-
-            AskToRestartTheGame(); // FALTA EL RESTART
-
-            Console.ReadLine();
-        }
-
-        private static void AskToRestartTheGame()
-        {
-            Console.Write("Do you want to play again? (y / n): ");
-            string answer;
-
-            bool isValidAnswer = false;
-            do
-            {
-                answer = Console.ReadLine();
-
-                if (answer.ToLower() == "y")
-                {
-                }
-                else
-                {
-                    Console.Write("Invalid choise. Please check the grammar and try again: ");
-                }
-
-            } while (isValidSelection == false);
 
         }
 
