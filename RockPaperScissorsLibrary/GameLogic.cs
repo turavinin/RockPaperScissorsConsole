@@ -15,7 +15,6 @@ namespace RockPaperScissorsLibrary
             "scissors"
         };
 
-
         public static string RandomComputerSelection()
         {
             Random randomNumber = new Random();
